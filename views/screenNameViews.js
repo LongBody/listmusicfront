@@ -44,10 +44,10 @@ view.showComponents = async function(screenName) {
                     $('#list-music').html(`<div class="loader"></div>`)
                     e.preventDefault();
                     let keywordValue = keyword.value;
-                    console.log(keywordValue)
                     let queryString = "https://listmusicnodejs.herokuapp.com/api/list-music/find/?search=" + keywordValue
                     let response = await fetch(queryString + "")
                     let body = await response.json()
+
                     if (body.length == 0) {
                         $('#list-music').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
                     } else {
@@ -64,9 +64,11 @@ view.showComponents = async function(screenName) {
                         $('#list-music').html(`<div class="loader"></div>`)
                         let keywordValue = $('.' + item).attr('alt')
                         let queryString = "https://listmusicnodejs.herokuapp.com/api/categories/find/?search=" + keywordValue
-                        console.log(queryString)
                         let response = await fetch(queryString + "")
                         let body = await response.json()
+
+
+
                         let queryStringCategories = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=1&search=" + body
                         let queryStringGetAll = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&&search=" + body
                         let queryStringNextPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&&search=" + body + "&pageIndex="
@@ -78,8 +80,7 @@ view.showComponents = async function(screenName) {
                         pagination(sizePage)
                         nextPage(queryStringNextPage, sizePage)
 
-
-                        if (bodyCategories.length == 0 || body.length === 0) {
+                        if (bodyCategories.length == 0) {
                             $('#list-music').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
                         } else {
                             listMusic(bodyCategories)
