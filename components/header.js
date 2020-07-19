@@ -2,7 +2,7 @@ const components = {}
 components.navbar = `
 <nav class="navbar navbar-expand-sm navbar-light bg-light" >
 <div class="container"> 
-<a class="navbar-brand" href="../index.html"><img src="../image/brand.png" style="height:100px"></a>
+<a class="navbar-brand" href="../index.html"><img src="./image/brand.png" style="height:100px"></a>
 <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
