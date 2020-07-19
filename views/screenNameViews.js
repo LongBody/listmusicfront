@@ -21,7 +21,7 @@ view.showComponents = async function(screenName) {
                 myMusic.innerHTML = ''
 
                 let url = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=1"
-                let urlPage = "http://localhost:7000/api/list-music"
+                let urlPage = "https://listmusicnodejs.herokuapp.com/api/api/list-music"
                 let response = await fetch(url)
                 let responsePage = await fetch(urlPage)
                 let body = await response.json()
