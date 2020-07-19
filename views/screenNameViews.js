@@ -12,6 +12,8 @@ view.showComponents = async function(screenName) {
 
                 let myMusic = document.getElementById('my-music')
 
+                let categoriesMusic = ["nhac-hoa", "nhac-tre", "nhac-latin", "nhac-tru-tinh", "au-my", "nhac-kpop"]
+
 
                 myWeb.innerHTML = components.navbar + components.listMusic
 
@@ -79,6 +81,33 @@ view.showComponents = async function(screenName) {
 
 
                 })
+
+
+                for (let item of categoriesMusic) {
+                    $('.' + item).click(async function() {
+                        let keywordValue = $('.' + item).attr('alt')
+                        let queryString = "http://localhost:7000/api/categories/find/?search=" + keywordValue
+                        console.log(queryString)
+                        let response = await fetch(queryString + "")
+                        let body = await response.json()
+                        console.log(body)
+
+
+                        let queryStringCategories = "http://localhost:7000/api/list-music/?search=" + body
+                        let responseCategories = await fetch(queryStringCategories + "")
+                        let bodyCategories = await responseCategories.json()
+
+                        console.log(bodyCategories)
+
+                        if (bodyCategories.length == 0 || body.length === 0) {
+                            $('#list-music').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
+                        } else {
+                            listMusic(bodyCategories)
+                        }
+
+                    })
+
+                }
 
 
 

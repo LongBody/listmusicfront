@@ -39,26 +39,26 @@ components.listMusic = `
 <ul>
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/17/7/b/3/b/1592361564422_org.jpg"  class="img-categories img-fluid"/>
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/17/7/b/3/b/1592361564422_org.jpg"  class="img-categories nhac-hoa img-fluid"/ alt="nhạc hoa">
 </a>
 </li>
 
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/09/3/2/9/5/1591683723884_org.jpg"  class="img-categories img-fluid"/>
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/09/3/2/9/5/1591683723884_org.jpg"  class="img-categories nhac-tre img-fluid"/ alt="nhạc trẻ">
 </a>
 </li>
 
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/09/3/2/9/5/1591683963667_org.jpg"  class="img-categories img-fluid"/>
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/09/3/2/9/5/1591683963667_org.jpg"  class="img-categories nhac-latin img-fluid"/ alt="nhạc latin">
 </a>
 </li>
 
 
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/09/3/2/9/5/1591687974679_org.jpg"  class="img-categories img-fluid"/>
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/09/3/2/9/5/1591687974679_org.jpg"  class="img-categories nhac-tru-tinh img-fluid"/ alt="nhạc trữ tình">
 </a>
 </li>
 
@@ -66,13 +66,13 @@ components.listMusic = `
 
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/15/9/d/c/3/1592202306299_org.jpg"  class="img-categories img-fluid"/>
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/15/9/d/c/3/1592202306299_org.jpg"  class="img-categories au-my img-fluid"/ alt="âu mỹ">
 </a>
 </li>
 
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/22/7/c/e/e/1592809802026_org.jpg"  class="img-categories img-fluid"/>
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/22/7/c/e/e/1592809802026_org.jpg"  class="img-categories nhac-kpop img-fluid" alt="nhạc kpop"/ >
 </a>
 </li>
 
