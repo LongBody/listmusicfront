@@ -61,14 +61,12 @@ view.showComponents = async function(screenName) {
 
                 for (let item of categoriesMusic) {
                     $('.' + item).click(async function() {
+                        $('#list-music').html(`<div class="loader"></div>`)
                         let keywordValue = $('.' + item).attr('alt')
                         let queryString = "https://listmusicnodejs.herokuapp.com/api/categories/find/?search=" + keywordValue
                         console.log(queryString)
                         let response = await fetch(queryString + "")
                         let body = await response.json()
-                        console.log(body)
-
-
                         let queryStringCategories = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=1&search=" + body
                         let queryStringGetAll = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&&search=" + body
                         let queryStringNextPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&&search=" + body + "&pageIndex="
