@@ -30,7 +30,7 @@ view.showComponents = async function(screenName) {
                 let pageClick = document.getElementById("page-click")
 
                 pagination.innerHTML = ``
-                for (let page = 1; page <= 3; page++) {
+                for (let page = 1; page <= 4; page++) {
                     let classPage = 'page' + page
                     let currentPage = 'pageCurrent' + page
                     $('.pageCurrent1').attr('class', 'page-item pageCurrent1 active')
@@ -41,7 +41,7 @@ view.showComponents = async function(screenName) {
 
                 }
 
-                for (let page = 1; page <= 3; page++) {
+                for (let page = 1; page <= 4; page++) {
                     let classPage = 'page' + page
                     $('.' + classPage).click(async function() {
                         $('#list-music').html(`<div class="loader"></div>`)
