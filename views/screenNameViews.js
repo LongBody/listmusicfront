@@ -21,49 +21,24 @@ view.showComponents = async function(screenName) {
                 myMusic.innerHTML = ''
 
                 let url = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=1"
+                let urlPage = "http://localhost:7000/api/list-music"
                 let response = await fetch(url)
+                let responsePage = await fetch(urlPage)
                 let body = await response.json()
+                let bodyPage = await responsePage.json()
 
                 listMusic(body);
 
                 let btnSearch = document.getElementById("btn-search")
                 let keyword = document.getElementById("keyword")
-                let pagination = document.getElementById("pagination-list-music")
-                let pageClick = document.getElementById("page-click")
 
-                pagination.innerHTML = ``
-                for (let page = 1; page <= 4; page++) {
-                    let classPage = 'page' + page
-                    let currentPage = 'pageCurrent' + page
-                    $('.pageCurrent1').attr('class', 'page-item pageCurrent1 active')
-                    pagination.innerHTML += `
-                    <li class="page-item ${currentPage} "><a class="${classPage} page-link" value =${page} href="#">${page}</a></li>`
+                let sizePagination = Math.ceil(bodyPage.length / 8)
 
+                pagination(sizePagination)
 
+                let queryPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex="
 
-                }
-
-                for (let page = 1; page <= 4; page++) {
-                    let classPage = 'page' + page
-                    $('.' + classPage).click(async function() {
-                        $('#list-music').html(`<div class="loader"></div>`)
-                        console.log($('.' + classPage).html())
-                        let page = $('.' + classPage).html()
-                        let queryString = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=" + page
-                        let response = await fetch(queryString + "")
-                        let body = await response.json()
-                        let currentPage = 'page-item page' + page
-                        console.log(currentPage)
-                        listMusic(body)
-
-                        $('.active').removeClass('active')
-                        let currentPageActive = 'active page-item pageCurrent' + page
-                        $('.pageCurrent' + page).attr('class', currentPageActive)
-
-                    })
-
-                }
-
+                nextPage(queryPage, sizePagination)
 
                 btnSearch.addEventListener('click', async function(e) {
                     $('#list-music').html(`<div class="loader"></div>`)
@@ -77,6 +52,7 @@ view.showComponents = async function(screenName) {
                         $('#list-music').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
                     } else {
                         listMusic(body)
+                        pagination(Math.ceil(body.length / 8))
                     }
 
 
@@ -86,18 +62,24 @@ view.showComponents = async function(screenName) {
                 for (let item of categoriesMusic) {
                     $('.' + item).click(async function() {
                         let keywordValue = $('.' + item).attr('alt')
-                        let queryString = "http://localhost:7000/api/categories/find/?search=" + keywordValue
+                        let queryString = "https://listmusicnodejs.herokuapp.com/api/categories/find/?search=" + keywordValue
                         console.log(queryString)
                         let response = await fetch(queryString + "")
                         let body = await response.json()
                         console.log(body)
 
 
-                        let queryStringCategories = "http://localhost:7000/api/list-music/?search=" + body
+                        let queryStringCategories = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=1&search=" + body
+                        let queryStringGetAll = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&&search=" + body
+                        let queryStringNextPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&&search=" + body + "&pageIndex="
                         let responseCategories = await fetch(queryStringCategories + "")
+                        let responseGetAll = await fetch(queryStringGetAll + "")
                         let bodyCategories = await responseCategories.json()
+                        let bodyGetAll = await responseGetAll.json()
+                        let sizePage = Math.ceil(bodyGetAll.length / 8)
+                        pagination(sizePage)
+                        nextPage(queryStringNextPage, sizePage)
 
-                        console.log(bodyCategories)
 
                         if (bodyCategories.length == 0 || body.length === 0) {
                             $('#list-music').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
@@ -158,7 +140,42 @@ async function listMusic(body) {
 
     }
 
+}
 
 
+function pagination(sizePage) {
+    let pagination = document.getElementById("pagination-list-music")
+        // let pageClick = document.getElementById("page-click")
 
+    pagination.innerHTML = ``
+    for (let page = 1; page <= sizePage; page++) {
+        let classPage = 'page' + page
+        let currentPage = 'pageCurrent' + page
+        $('.pageCurrent1').attr('class', 'page-item pageCurrent1 active')
+        pagination.innerHTML += `
+    <li class="page-item ${currentPage} "><a class="${classPage} page-link" value =${page} href="#">${page}</a></li>`
+
+    }
+}
+
+
+function nextPage(queryStringNextPage, sizePage) {
+    for (let page = 1; page <= sizePage; page++) {
+        let classPage = 'page' + page
+        $('.' + classPage).click(async function() {
+            $('#list-music').html(`<div class="loader"></div>`)
+            let page = $('.' + classPage).html()
+            let queryString = queryStringNextPage + page
+            let response = await fetch(queryString + "")
+            let body = await response.json()
+            let currentPage = 'page-item page' + page
+            listMusic(body)
+
+            $('.active').removeClass('active')
+            let currentPageActive = 'active page-item pageCurrent' + page
+            $('.pageCurrent' + page).attr('class', currentPageActive)
+
+        })
+
+    }
 }
