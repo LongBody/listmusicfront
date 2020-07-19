@@ -1,0 +1,41 @@
+.title-song {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.wrap-content-music:hover {
+    background-color: rgb(247, 247, 241);
+}
+
+
+/* .image-link .wrap-content-music:hover {
+    background-color: rgb(247, 247, 241);
+} */
+
+.author {
+    opacity: 0.5;
+    font-size: 13px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    display: table-row;
+    height: 100%;
+}
+
+.img-categories {
+    width: 250px;
+}
+
+ul {
+    list-style-type: none;
+}
