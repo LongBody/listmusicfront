@@ -53,6 +53,11 @@ ul {
     list-style-type: none;
 }
 
+#list-music {
+    width: 350px;
+    height: 507px;
+}
+
 @media screen and (max-width: 1000px) {
     .categories-list {
         display: none;
