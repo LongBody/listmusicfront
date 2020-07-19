@@ -2,7 +2,7 @@ const components = {}
 components.navbar = `
 <nav class="navbar navbar-expand-sm navbar-light bg-light" >
 <div class="container"> 
-<a class="navbar-brand" href="../index.html"><img src="https://firebasestorage.googleapis.com/v0/b/ci37-32415.appspot.com/o/brand.png?alt=media&token=786f64d7-2d70-4131-a8fe-84d2dbe319d6" style="height:100px"/></a>
+<a class="navbar-brand" href="../index.html"><img src="https://firebasestorage.googleapis.com/v0/b/ci37-32415.appspot.com/o/brand.png?alt=media&token=786f64d7-2d70-4131-a8fe-84d2dbe319d6" style="height:100px" /></a>
 <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
