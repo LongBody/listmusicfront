@@ -44,6 +44,7 @@ view.showComponents = async function(screenName) {
                 for (let page = 1; page <= 3; page++) {
                     let classPage = 'page' + page
                     $('.' + classPage).click(async function() {
+                        $('#list-music').html(`<div class="loader"></div>`)
                         console.log($('.' + classPage).html())
                         let page = $('.' + classPage).html()
                         let queryString = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=" + page
@@ -52,6 +53,7 @@ view.showComponents = async function(screenName) {
                         let currentPage = 'page-item page' + page
                         console.log(currentPage)
                         listMusic(body)
+
                         $('.active').removeClass('active')
                         let currentPageActive = 'active page-item pageCurrent' + page
                         $('.pageCurrent' + page).attr('class', currentPageActive)
@@ -62,13 +64,19 @@ view.showComponents = async function(screenName) {
 
 
                 btnSearch.addEventListener('click', async function(e) {
+                    $('#list-music').html(`<div class="loader"></div>`)
                     e.preventDefault();
                     let keywordValue = keyword.value;
                     console.log(keywordValue)
                     let queryString = "https://listmusicnodejs.herokuapp.com/api/list-music/find/?search=" + keywordValue
                     let response = await fetch(queryString + "")
                     let body = await response.json()
-                    listMusic(body)
+                    if (body.length == 0) {
+                        $('#list-music').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
+                    } else {
+                        listMusic(body)
+                    }
+
 
                 })
 
@@ -85,7 +93,8 @@ async function listMusic(body) {
     var listMusic = document.getElementById("list-music")
     let myMusic = document.getElementById('my-music')
 
-    listMusic.innerHTML = ""
+    listMusic.innerHTML = `
+    <div class="loader-page" style="display:none"></div>`
     let html;
     for (let item of body) {
         let { title, imageLink, author, musicLink, _id } = item

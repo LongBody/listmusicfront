@@ -4,7 +4,8 @@
 }
 
 .wrap-content-music:hover {
-    background-color: rgb(247, 247, 241);
+    background-color: rgb(245, 245, 245);
+    border-radius: 15px;
 }
 
 
@@ -49,5 +50,43 @@ ul {
 @media screen and (max-width: 500px) {
     .btn-outline-secondary {
         margin-bottom: 20px;
+    }
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #1761a0;
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.not-found {
+    display: none;
+    color: red;
+}
+
+
+/* Safari */
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

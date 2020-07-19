@@ -26,17 +26,20 @@ components.navbar = `
 `
 
 components.listMusic = `
+<div class="not-found">NOT FOUND</div>
 <div class="container mt-4" >
 <div class="row">
 <div id="list-music" class="col-lg-5">
+<div class="loader"></div>
 </div>
+
 <div class="col-lg-2"></div>
 
 <div class="col-lg-3 categories-list">
 <ul>
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/thumb/2020/06/17/7/d/8/9/1592361564344_org.jpg"  class="img-categories img-fluid"/>
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/17/7/b/3/b/1592361564422_org.jpg"  class="img-categories img-fluid"/>
 </a>
 </li>
 
