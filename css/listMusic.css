@@ -61,8 +61,13 @@ ul {
         margin-left: 20px;
     }
     #list-music {
-        width: 350px;
+        width: 250px;
         height: 507px;
+    }
+    .title-song {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 15px;
     }
 }
 
@@ -81,7 +86,7 @@ ul {
         animation: spin 2s linear infinite;
     }
     #list-music {
-        width: 350px;
+        width: 250px;
         height: 507px;
     }
 }
