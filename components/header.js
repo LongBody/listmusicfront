@@ -39,7 +39,7 @@ components.listMusic = `
 <ul>
 <li class="mt-2">
 <a >
-<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/17/7/b/3/b/1592361564422_org.jpg"  class="img-categories nhac-hoa img-fluid"/ alt="nhạc hoa">
+<img src="https://avatar-nct.nixcdn.com/topic/mobile/2020/06/17/7/b/3/b/1592361564422_org.jpg"  class="img-categories nhac-hoa img-fluid"/ alt="nhạc Hoa">
 </a>
 </li>
 
