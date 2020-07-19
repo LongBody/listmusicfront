@@ -11,7 +11,7 @@ components.navbar = `
     method = "GET" >
     <input class="form-control my-0 py-1 red-border" id = "keyword" type="text" placeholder="Search" aria-label="Search">
     <div class="input-group-append">
-    <button class = "btn btn-outline-secondary my-2 my-sm-0"
+    <button class = "btn btn-outline-secondary my-sm-0"
     type = "submit"
     id = "btn-search" ><i class="fas fa-search text-grey"
               aria-hidden="true"></i></button> 
@@ -32,7 +32,7 @@ components.listMusic = `
 </div>
 <div class="col-lg-2"></div>
 
-<div class="col-lg-3">
+<div class="col-lg-3 categories-list">
 <ul>
 <li class="mt-2">
 <a >

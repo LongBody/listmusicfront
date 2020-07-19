@@ -39,3 +39,15 @@ body {
 ul {
     list-style-type: none;
 }
+
+@media screen and (max-width: 1000px) {
+    .categories-list {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .btn-outline-secondary {
+        margin-bottom: 20px;
+    }
+}
