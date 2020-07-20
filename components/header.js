@@ -174,6 +174,7 @@ components.adminDashboard = `
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#" id="sort-asc">A-Z</a>
         <a class="dropdown-item" href="#" id="sort-desc">Z-A</a>
+        <a class="dropdown-item" href="#" id="all-song">All Songs</a>
       </div>
     </span>
           </th>

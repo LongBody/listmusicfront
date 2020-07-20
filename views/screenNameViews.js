@@ -192,6 +192,14 @@ view.showComponents = async function(screenName) {
                     let body = await response.json()
                     listMusicAdmin(body)
                 })
+                $("#all-song").click(async function() {
+                    $('#dashboard').html(`<div class="loader"></div>`)
+                    let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music"
+                    let response = await fetch(urlPage)
+                    let body = await response.json()
+                    listMusicAdmin(body)
+                })
+
 
 
 
