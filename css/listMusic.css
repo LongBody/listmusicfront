@@ -67,6 +67,11 @@ ul {
     }
 }
 
+.page-item.active .page-link {
+    background-color: #1761a0;
+    border-color: #1761a0;
+}
+
 @media screen and (max-width: 400px) {
     .categories-list {
         display: none;
