@@ -93,7 +93,6 @@ view.showComponents = async function(screenName) {
 
                 }
 
-
                 $("#btn-login-in").click(async function(e) {
                     e.preventDefault()
                     let email = $("#InputEmail").val()
@@ -104,7 +103,6 @@ view.showComponents = async function(screenName) {
                     let response = await fetch(queryString + "")
                     let body = await response.json()
 
-                    console.log(body)
                     if ((body.message == "Missing email")) {
                         $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
                         Missing email</div>`)
@@ -116,12 +114,8 @@ view.showComponents = async function(screenName) {
                         Check your email and password again</div>`)
                     } else {
                         view.showComponents('admin')
+                        $('#changeName').html(body[0].fullName)
                     }
-
-
-
-
-
                 })
 
 

@@ -17,7 +17,7 @@ components.navbar = `
               aria-hidden="true"></i></button> 
     </div>
   </form>
-  <a type="button" href ="#" style ="
+  <a type="button"  href ="#" id="changeName"  style =" 
   position: relative;
   bottom: 52px;
   right: 60px;
