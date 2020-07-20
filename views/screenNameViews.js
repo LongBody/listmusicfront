@@ -21,14 +21,14 @@ view.showComponents = async function(screenName) {
                 myMusic.innerHTML = ''
 
                 let url = "https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=1"
-                let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music"
                 let response = await fetch(url)
-                let responsePage = await fetch(urlPage)
                 let body = await response.json()
-                let bodyPage = await responsePage.json()
 
                 listMusic(body);
 
+                let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music"
+                let bodyPage = await responsePage.json()
+                let responsePage = await fetch(urlPage)
                 let btnSearch = document.getElementById("btn-search")
                 let keyword = document.getElementById("keyword")
 
