@@ -17,7 +17,7 @@ components.navbar = `
               aria-hidden="true"></i></button> 
     </div>
   </form>
-  <a type="button"  href ="#" id="changeName"  style =" 
+  <a type="button" id="sign-in-navbar" href ="#" style ="
   position: relative;
   bottom: 52px;
   right: 60px;
@@ -26,6 +26,13 @@ components.navbar = `
 "data-toggle="modal" data-target="#exampleModal">
 <i class="fas fa-sign-in-alt"></i> Sign in
 </a>
+<span id="changeName"  style ="
+position: relative;
+bottom: 52px;
+right: 115px;
+font-size : 14px;
+color:#1761a0 ">
+</span>
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

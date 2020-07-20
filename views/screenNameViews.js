@@ -114,7 +114,8 @@ view.showComponents = async function(screenName) {
                         Check your email and password again</div>`)
                     } else {
                         view.showComponents('admin')
-                        $('#changeName').html(body[0].fullName)
+                        $('#changeName').html(body[0].fullName + " (Admin)")
+                        $('#sign-in-navbar').hide()
                     }
                 })
 
