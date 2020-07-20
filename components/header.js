@@ -17,12 +17,67 @@ components.navbar = `
               aria-hidden="true"></i></button> 
     </div>
   </form>
+  <a type="button" href ="#" style ="
+  position: relative;
+  bottom: 52px;
+  right: 60px;
+  font-size : 14px;
+  color:#1761a0
+"data-toggle="modal" data-target="#exampleModal">
+<i class="fas fa-sign-in-alt"></i> Sign in
+</a>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+      <form action = "http://localhost:8000/api/sign-in" method = "GET" id="form-log-in">
+      <div class="form-group">
+        <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+
+        <input type="password" class="form-control" id="InputPassword" placeholder="Enter Password">
+
+    </form>
+    </div>
+
+ <div id="wrong-user"></div>
+   
+    <div class="modal-footer">
+
+
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-success" id="btn-login-in">Login</button>
+  </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
 
 
 </div>
 </div>
       
     </nav>
+
+
+
+
+
+
+
 `
 
 components.listMusic = `
@@ -91,4 +146,23 @@ components.listMusic = `
 </div>
 </nav>
 
+`
+
+components.adminDashboard = `
+
+
+<table class="table container">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Song</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+    </tr>
+  </thead>
+  <tbody id="dashboard">
+
+
+  </tbody>
+</table>
 `

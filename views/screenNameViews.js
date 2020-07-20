@@ -94,9 +94,72 @@ view.showComponents = async function(screenName) {
                 }
 
 
+                $("#btn-login-in").click(async function(e) {
+                    e.preventDefault()
+                    let email = $("#InputEmail").val()
+                    let password = $("#InputPassword").val()
+
+                    let queryString = "https://listmusicnodejs.herokuapp.com/api/sign-in/?email=" + email + "&password=" + password
+                    console.log(queryString)
+                    let response = await fetch(queryString + "")
+                    let body = await response.json()
+
+                    console.log(body)
+                    if ((body.message == "Missing email")) {
+                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
+                        Missing email</div>`)
+                    } else if (body.message == "Missing password") {
+                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
+                        Missing Password</div>`)
+                    } else if (body.message == "Wrong email or password") {
+                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
+                        Check your email and password again</div>`)
+                    } else {
+                        view.showComponents('admin')
+                    }
+
+
+
+
+
+                })
+
+
 
 
                 break
+            }
+
+        case 'admin':
+            {
+                let myWeb = document.getElementById('my-web')
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                myWeb.innerHTML = components.navbar + components.adminDashboard
+                let dashboardAdmin = document.getElementById('dashboard')
+
+                console.log(dashboardAdmin)
+                let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music"
+                let response = await fetch(urlPage)
+                let body = await response.json()
+
+                console.log(body)
+
+                for (let i = 0; i < body.length; i++) {
+
+                    html = `
+                    <tr>
+                    <th scope="row">${i}</th>
+                    <td> <image class="img-fluid card" src = "${body[i].imageLink}" style="height:50px"/> </td>
+                    <td style = "font-weight : 500">${body[i].title}</td>
+                    <td style = "font-weight : 300">${body[i].author}</td>
+`
+                    dashboardAdmin.innerHTML += html
+
+                }
+
+
+
             }
 
     }
