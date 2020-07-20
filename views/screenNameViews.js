@@ -27,8 +27,10 @@ view.showComponents = async function(screenName) {
                 listMusic(body);
 
                 let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music"
-                let bodyPage = await responsePage.json()
                 let responsePage = await fetch(urlPage)
+                let bodyPage = await responsePage.json()
+
+
                 let btnSearch = document.getElementById("btn-search")
                 let keyword = document.getElementById("keyword")
 
