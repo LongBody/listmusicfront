@@ -156,20 +156,33 @@ components.listMusic = `
 `
 
 components.adminDashboard = `
-
-
 <table class="table container">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Song</th>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-    </tr>
-  </thead>
-  <tbody id="dashboard">
-
-
-  </tbody>
-</table>
+    
+      <thead class="">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Song</th>
+          <th scope="col">Title 
+          <span class="dropdown" style="padding: 2px;">
+      <a class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      style=" font-size: 11px;
+      color: white;
+      padding: 2px;"
+      >
+        Sort
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" id="sort-asc">A-Z</a>
+        <a class="dropdown-item" href="#" id="sort-desc">Z-A</a>
+      </div>
+    </span>
+          </th>
+          <th scope="col">Author</th>
+        </tr>
+      </thead>
+      <tbody id="dashboard">
+    
+    
+      </tbody>
+    </table>
 `

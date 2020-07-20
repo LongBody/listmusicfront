@@ -134,10 +134,12 @@ view.showComponents = async function(screenName) {
                 $('.modal-backdrop').remove();
                 myWeb.innerHTML = components.navbar + components.adminDashboard
                 let dashboardAdmin = document.getElementById('dashboard')
+                let btnSearch = document.getElementById("btn-search")
+                let keyword = document.getElementById("keyword")
                 let myMusic = document.getElementById('my-music')
                 myMusic.innerHTML = `
                 `
-                console.log(dashboardAdmin)
+
                 let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music"
                 let response = await fetch(urlPage)
                 let body = await response.json()
@@ -152,10 +154,44 @@ view.showComponents = async function(screenName) {
                     <td> <image class="img-fluid card" src = "${body[i].imageLink}" style="height:50px"/> </td>
                     <td style = "font-weight : 500">${body[i].title}</td>
                     <td style = "font-weight : 300">${body[i].author}</td>
-`
+                    </tr>`
                     dashboardAdmin.innerHTML += html
 
                 }
+
+
+                btnSearch.addEventListener('click', async function(e) {
+                    $('#dashboard').html(`<div class="loader"></div>`)
+                    e.preventDefault();
+                    let keywordValue = keyword.value;
+                    let queryString = "https://listmusicnodejs.herokuapp.com/api/list-music/find/?search=" + keywordValue
+                    let response = await fetch(queryString + "")
+                    let body = await response.json()
+
+                    if (body.length == 0) {
+                        $('#dashboard').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
+                    } else {
+                        listMusicAdmin(body)
+                    }
+
+
+                })
+
+                $("#sort-asc").click(async function() {
+                    $('#dashboard').html(`<div class="loader"></div>`)
+                    let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?sort=asc&sortBy=title"
+                    let response = await fetch(urlPage)
+                    let body = await response.json()
+                    listMusicAdmin(body)
+                })
+
+                $("#sort-desc").click(async function() {
+                    $('#dashboard').html(`<div class="loader"></div>`)
+                    let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?sort=desc&sortBy=title"
+                    let response = await fetch(urlPage)
+                    let body = await response.json()
+                    listMusicAdmin(body)
+                })
 
 
 
@@ -187,9 +223,7 @@ async function listMusic(body) {
     </div>`
         listMusic.innerHTML += html
         var listenMusicIframe = document.getElementById("listen-music-iframe")
-
     }
-
 
     for (let item of body) {
         let { _id } = item
@@ -201,6 +235,28 @@ async function listMusic(body) {
                     `
             })
         }
+
+    }
+
+}
+
+
+async function listMusicAdmin(body) {
+    let dashboardAdmin = document.getElementById('dashboard')
+
+    dashboardAdmin.innerHTML = `
+    <div class="loader-page" style="display:none"></div>`
+    let html;
+    for (let i = 0; i < body.length; i++) {
+
+        html = `
+        <tr>
+        <th scope="row">${i}</th>
+        <td> <image class="img-fluid card" src = "${body[i].imageLink}" style="height:50px"/> </td>
+        <td style = "font-weight : 500">${body[i].title}</td>
+        <td style = "font-weight : 300">${body[i].author}</td>
+        </tr>`
+        dashboardAdmin.innerHTML += html
 
     }
 
