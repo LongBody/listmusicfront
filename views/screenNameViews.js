@@ -132,7 +132,9 @@ view.showComponents = async function(screenName) {
                 $('.modal-backdrop').remove();
                 myWeb.innerHTML = components.navbar + components.adminDashboard
                 let dashboardAdmin = document.getElementById('dashboard')
-
+                let myMusic = document.getElementById('my-music')
+                myMusic.innerHTML = `
+                `
                 console.log(dashboardAdmin)
                 let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music"
                 let response = await fetch(urlPage)
