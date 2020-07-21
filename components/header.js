@@ -34,7 +34,7 @@ font-size : 14px;
 color:#1761a0 ">
 </span>
 
-
+<button type="button" class="btn btn-sm btn-secondary" style="display:none" id="btn-log-out">Log out</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

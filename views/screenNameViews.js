@@ -101,7 +101,6 @@ view.showComponents = async function(screenName) {
                     let password = $("#InputPassword").val()
 
                     let queryString = "https://listmusicnodejs.herokuapp.com/api/sign-in/?email=" + email + "&password=" + password
-                    console.log(queryString)
                     let response = await fetch(queryString + "")
                     let body = await response.json()
 
@@ -115,12 +114,56 @@ view.showComponents = async function(screenName) {
                         $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
                         Check your email and password again</div>`)
                     } else {
+                        sessionStorage.setItem('user', body[0].fullName);
                         view.showComponents('admin')
-                        $('#changeName').html(body[0].fullName + " (Admin)")
-                        $('#sign-in-navbar').hide()
+
                     }
                 })
+                $('#btn-page-next').click(async function() {
+                    let currentPageActiveClass = document.getElementsByClassName('active')
+                    let currentPage = currentPageActiveClass[0].innerText
+                    let pageNext = parseInt(currentPage) + 1
 
+                    if (pageNext == sizePagination + 1) {
+                        pageNext -= 1
+                    }
+
+
+                    $('#list-music').html(`<div class="loader"></div>`)
+                    let queryString = 'https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=' + pageNext
+
+                    let response = await fetch(queryString + "")
+                    let body = await response.json()
+                        // let currentPageClass = 'page-item page' + pageNext
+                    listMusic(body)
+                    $('.active').removeClass('active')
+                    let currentPageActive = 'active page-item pageCurrent' + pageNext
+                    $('.pageCurrent' + pageNext).attr('class', currentPageActive)
+
+                })
+
+                $('#btn-page-previous').click(async function() {
+                    let currentPageActiveClass = document.getElementsByClassName('active')
+                    let currentPage = currentPageActiveClass[0].innerText
+                    let pageNext = parseInt(currentPage) - 1
+
+
+                    if (pageNext == 0) {
+                        pageNext = 1
+                    }
+
+                    $('#list-music').html(`<div class="loader"></div>`)
+                    let queryString = 'https://listmusicnodejs.herokuapp.com/api/list-music/?pageSize=8&pageIndex=' + pageNext
+
+                    let response = await fetch(queryString + "")
+                    let body = await response.json()
+                    listMusic(body)
+                    $('.active').removeClass('active')
+                    let currentPageActive = 'active page-item pageCurrent' + pageNext
+                    $('.pageCurrent' + pageNext).attr('class', currentPageActive)
+
+
+                })
 
 
 
@@ -144,7 +187,15 @@ view.showComponents = async function(screenName) {
                 let response = await fetch(urlPage)
                 let body = await response.json()
 
-                console.log(body)
+                let data = sessionStorage.getItem('user');
+                $('#changeName').html(data + " (Admin)")
+                $('#btn-log-out').css('display', "block")
+                $('#sign-in-navbar').hide()
+
+                $('#btn-log-out').click(function() {
+                    sessionStorage.removeItem('user')
+                    view.showComponents('main')
+                })
 
                 for (let i = 0; i < body.length; i++) {
 
@@ -178,10 +229,12 @@ view.showComponents = async function(screenName) {
                 })
 
                 $("#sort-asc").click(async function() {
+                    console.log('ok')
                     $('#dashboard').html(`<div class="loader"></div>`)
                     let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?sort=asc&sortBy=title"
                     let response = await fetch(urlPage)
                     let body = await response.json()
+                    console.log(body)
                     listMusicAdmin(body)
                 })
 
@@ -275,35 +328,42 @@ function pagination(sizePage) {
     let pagination = document.getElementById("pagination-list-music")
         // let pageClick = document.getElementById("page-click")
 
-    pagination.innerHTML = ``
+    pagination.innerHTML = `<li class="page-item pageCurrent" id="btn-page-previous"><a class="page-link" href="#">Previous</a></li>`
     for (let page = 1; page <= sizePage; page++) {
         let classPage = 'page' + page
         let currentPage = 'pageCurrent' + page
         $('.pageCurrent1').attr('class', 'page-item pageCurrent1 active')
         pagination.innerHTML += `
-    <li class="page-item ${currentPage} "><a class="${classPage} page-link" value =${page} href="#">${page}</a></li>`
+    <li class="page-item ${currentPage} value =${page}"><a class="${classPage} page-link" href="#">${page}</a></li>`
 
     }
+    pagination.innerHTML += `<li class="page-item pageCurrent" id="btn-page-next"><a class="page-link" href="#">Next</a></li>`
 }
 
 
 function nextPage(queryStringNextPage, sizePage) {
+
     for (let page = 1; page <= sizePage; page++) {
         let classPage = 'page' + page
         $('.' + classPage).click(async function() {
+            // console.log(classPage.replace('page', ''))
             $('#list-music').html(`<div class="loader"></div>`)
             let page = $('.' + classPage).html()
             let queryString = queryStringNextPage + page
             let response = await fetch(queryString + "")
             let body = await response.json()
-            let currentPage = 'page-item page' + page
             listMusic(body)
 
             $('.active').removeClass('active')
             let currentPageActive = 'active page-item pageCurrent' + page
-            $('.pageCurrent' + page).attr('class', currentPageActive)
 
+            $('.pageCurrent' + page).attr('class', currentPageActive)
         })
 
     }
+
+
+
+
+
 }
