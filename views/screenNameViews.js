@@ -105,7 +105,6 @@ view.showComponents = async function(screenName) {
                     source: autocompleteArray
                 });
 
-
                 for (let item of categoriesMusic) {
                     $('.' + item).click(async function() {
 
