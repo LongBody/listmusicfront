@@ -55,10 +55,55 @@ view.showComponents = async function(screenName) {
                     } else {
                         listMusic(body)
                         pagination(Math.ceil(body.length / 8))
+
+
+
+
+
                     }
 
 
                 })
+
+                console.log(bodyPage)
+
+                let autocompleteArray = []
+
+                bodyPage.map(item => {
+                    autocompleteArray.push(item.title)
+                })
+
+                console.log(autocompleteArray)
+
+                var availableTags = [
+                    "ActionScript",
+                    "AppleScript",
+                    "Asp",
+                    "BASIC",
+                    "C",
+                    "C++",
+                    "Clojure",
+                    "COBOL",
+                    "ColdFusion",
+                    "Erlang",
+                    "Fortran",
+                    "Groovy",
+                    "Haskell",
+                    "Java",
+                    "JavaScript",
+                    "Lisp",
+                    "Perl",
+                    "PHP",
+                    "Python",
+                    "Ruby",
+                    "Scala",
+                    "Scheme"
+                ];
+                $("#keyword").autocomplete({
+                    max: 5,
+                    minLength: 2,
+                    source: autocompleteArray
+                });
 
 
                 for (let item of categoriesMusic) {
@@ -89,36 +134,16 @@ view.showComponents = async function(screenName) {
                             $('#list-music').html(`<div class="not-found" style="display:block">NOT FOUND - 404</div>`)
                         } else {
                             listMusic(bodyCategories)
+                            $('#btn-page-next').hide()
+                            $('#btn-page-previous').hide()
+                            $('.pageCurrent1').attr('class', 'page-item pageCurrent1 active')
                         }
 
                     })
 
                 }
 
-                $("#btn-login-in").click(async function(e) {
-                    e.preventDefault()
-                    let email = $("#InputEmail").val()
-                    let password = $("#InputPassword").val()
 
-                    let queryString = "https://listmusicnodejs.herokuapp.com/api/sign-in/?email=" + email + "&password=" + password
-                    let response = await fetch(queryString + "")
-                    let body = await response.json()
-
-                    if ((body.message == "Missing email")) {
-                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
-                        Missing email</div>`)
-                    } else if (body.message == "Missing password") {
-                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
-                        Missing Password</div>`)
-                    } else if (body.message == "Wrong email or password") {
-                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
-                        Check your email and password again</div>`)
-                    } else {
-                        sessionStorage.setItem('user', body[0].fullName);
-                        view.showComponents('admin')
-
-                    }
-                })
                 $('#btn-page-next').click(async function() {
                     let currentPageActiveClass = document.getElementsByClassName('active')
                     let currentPage = currentPageActiveClass[0].innerText
@@ -164,6 +189,32 @@ view.showComponents = async function(screenName) {
 
 
                 })
+
+                $("#btn-login-in").click(async function(e) {
+                    e.preventDefault()
+                    let email = $("#InputEmail").val()
+                    let password = $("#InputPassword").val()
+
+                    let queryString = "https://listmusicnodejs.herokuapp.com/api/sign-in/?email=" + email + "&password=" + password
+                    let response = await fetch(queryString + "")
+                    let body = await response.json()
+
+                    if ((body.message == "Missing email")) {
+                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
+                        Missing email</div>`)
+                    } else if (body.message == "Missing password") {
+                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
+                        Missing Password</div>`)
+                    } else if (body.message == "Wrong email or password") {
+                        $('#wrong-user').html(`<div class="alert alert-danger" role="alert" style ="height">
+                        Check your email and password again</div>`)
+                    } else {
+                        sessionStorage.setItem('user', body[0].fullName);
+                        view.showComponents('admin')
+
+                    }
+                })
+
 
 
 
@@ -229,12 +280,10 @@ view.showComponents = async function(screenName) {
                 })
 
                 $("#sort-asc").click(async function() {
-                    console.log('ok')
                     $('#dashboard').html(`<div class="loader"></div>`)
                     let urlPage = "https://listmusicnodejs.herokuapp.com/api/list-music/?sort=asc&sortBy=title"
                     let response = await fetch(urlPage)
                     let body = await response.json()
-                    console.log(body)
                     listMusicAdmin(body)
                 })
 
@@ -328,7 +377,7 @@ function pagination(sizePage) {
     let pagination = document.getElementById("pagination-list-music")
         // let pageClick = document.getElementById("page-click")
 
-    pagination.innerHTML = `<li class="page-item pageCurrent" id="btn-page-previous"><a class="page-link" href="#">Previous</a></li>`
+    pagination.innerHTML = `<li class="page-item pageCurrent" id="btn-page-previous"><a class="page-link" href="#"><i class="fas fa-backward"></i></a></li>`
     for (let page = 1; page <= sizePage; page++) {
         let classPage = 'page' + page
         let currentPage = 'pageCurrent' + page
@@ -337,7 +386,7 @@ function pagination(sizePage) {
     <li class="page-item ${currentPage} value =${page}"><a class="${classPage} page-link" href="#">${page}</a></li>`
 
     }
-    pagination.innerHTML += `<li class="page-item pageCurrent" id="btn-page-next"><a class="page-link" href="#">Next</a></li>`
+    pagination.innerHTML += `<li class="page-item pageCurrent" id="btn-page-next"><a class="page-link" href="#"><i class="fas fa-forward"></i></a></li>`
 }
 
 

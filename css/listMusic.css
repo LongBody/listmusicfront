@@ -8,11 +8,6 @@
     border-radius: 15px;
 }
 
-
-/* .image-link .wrap-content-music:hover {
-    background-color: rgb(247, 247, 241);
-} */
-
 .loader {
     border: 5px solid #f3f3f3;
     border-radius: 50%;
@@ -51,6 +46,21 @@ body {
 
 ul {
     list-style-type: none;
+}
+
+.fa-backward {
+    font-size: 14px;
+    color: #1761a0;
+}
+
+.fa-forward {
+    font-size: 14px;
+    color: #1761a0;
+}
+
+.ui-menu .ui-menu-item {
+    padding: 5px !important;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {

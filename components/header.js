@@ -9,7 +9,7 @@ components.navbar = `
 <div class="collapse navbar-collapse ml-5" id="collapsibleNavId">
     <form class="input-group md-form form-sm form-2 pl-0 " style="width:80%" action = "http://localhost:8000/api/list-music"
     method = "GET" >
-    <input class="form-control my-0 py-1 red-border" id = "keyword" type="text" placeholder="Search" aria-label="Search">
+    <input class="form-control my-0 py-1 red-border" id ="keyword" type="text" placeholder="Search" aria-label="Search" autocomplete="off">
     <div class="input-group-append">
     <button class = "btn btn-outline-secondary my-sm-0"
     type = "submit"
