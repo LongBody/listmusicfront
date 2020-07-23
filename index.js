@@ -15,5 +15,9 @@ async function init() {
         socket.on("server-user-online", function(data) {
             $('#user-online-server-emit').html("Online :" + data)
         });
+
+        socket.on("server-user-offline", function(data) {
+            $('#user-online-server-emit').html("Online :" + data)
+        });
     }
 }
