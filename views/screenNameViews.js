@@ -187,6 +187,7 @@ view.showComponents = async function(screenName) {
                     } else {
                         sessionStorage.setItem('user', body[0].fullName);
                         view.showComponents('admin')
+                        socket.emit("user-online");
 
                     }
                 })
@@ -222,6 +223,7 @@ view.showComponents = async function(screenName) {
                 $('#btn-log-out').click(function() {
                     sessionStorage.removeItem('user')
                     view.showComponents('main')
+                    socket.emit("user-online");
                 })
 
                 for (let i = 0; i < body.length; i++) {
