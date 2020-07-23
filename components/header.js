@@ -140,7 +140,7 @@ components.listMusic = `
 
 
 </ul>
-<div class="user-online" id="user-online-server-emit">p</div>
+<div class="user-online" id="user-online-server-emit"></div>
 </div>
 </div>
 
