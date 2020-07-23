@@ -65,7 +65,7 @@ view.showComponents = async function(screenName) {
 
                 })
 
-                console.log(bodyPage)
+
 
                 let autocompleteArray = []
 
@@ -73,32 +73,9 @@ view.showComponents = async function(screenName) {
                     autocompleteArray.push(item.title)
                 })
 
-                console.log(autocompleteArray)
 
-                var availableTags = [
-                    "ActionScript",
-                    "AppleScript",
-                    "Asp",
-                    "BASIC",
-                    "C",
-                    "C++",
-                    "Clojure",
-                    "COBOL",
-                    "ColdFusion",
-                    "Erlang",
-                    "Fortran",
-                    "Groovy",
-                    "Haskell",
-                    "Java",
-                    "JavaScript",
-                    "Lisp",
-                    "Perl",
-                    "PHP",
-                    "Python",
-                    "Ruby",
-                    "Scala",
-                    "Scheme"
-                ];
+
+
                 $("#keyword").autocomplete({
                     max: 5,
                     minLength: 2,
