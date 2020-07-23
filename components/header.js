@@ -140,11 +140,14 @@ components.listMusic = `
 
 
 </ul>
+<div class="user-online" id="user-online-server-emit">p</div>
 </div>
 </div>
 
 
 </div>
+
+
 <div class="container mt-3" >
 <nav aria-label="...">
 <ul class="pagination" id="pagination-list-music">

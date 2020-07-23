@@ -63,6 +63,12 @@ ul {
     cursor: pointer;
 }
 
+.user-online {
+    padding-left: 40px;
+    color: #8BC34A;
+    font-weight: 500;
+}
+
 @media screen and (max-width: 1000px) {
     .categories-list {
         display: none;
